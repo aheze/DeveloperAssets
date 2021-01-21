@@ -3,7 +3,7 @@ iPhone 7 plus snapshot view
 Key | Value
 --- | ---
 Device | iPhone 7 Plus
-Software version | 14.3
+Software version | 14.2
 Xcode version | Version 12.3 (12C33)
 
 
