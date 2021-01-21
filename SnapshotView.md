@@ -1,5 +1,12 @@
 iPhone 7 plus snapshot view
 
+Key | Value
+--- | ---
+Device | iPhone 7 Plus
+Software version | 14.3
+Xcode version | Version 12.3 (12C33)
+
+
 My code:
 ```swift
 override func viewDidAppear(_ animated: Bool) {
