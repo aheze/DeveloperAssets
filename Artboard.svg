@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="2048px" height="520px" viewBox="0 0 2048 520" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Artboard</title>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="910" height="520" rx="42"></rect>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-3">
+            <stop stop-color="#D5F4FF" offset="0%"></stop>
+            <stop stop-color="#AFE9FF" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-4" x="0" y="0" width="910" height="520" rx="42"></rect>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-6">
+            <stop stop-color="#D5F4FF" offset="0%"></stop>
+            <stop stop-color="#AFE9FF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle" stroke="#979797" x="0.5" y="0.5" width="909" height="519" rx="42"></rect>
+        <g id="Group">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <g id="Mask"></g>
+            <g mask="url(#mask-2)" fill="url(#linearGradient-3)">
+                <g transform="translate(-228.000000, 210.000000)">
+                    <rect id="Rectangle-Copy-7" x="1112" y="0" width="240" height="100" rx="13"></rect>
+                    <rect id="Rectangle-Copy-6" x="834" y="0" width="240" height="100" rx="13"></rect>
+                    <rect id="Rectangle-Copy-2" x="556" y="0" width="240" height="100" rx="13"></rect>
+                    <rect id="Rectangle-Copy" x="278" y="0" width="240" height="100" rx="13"></rect>
+                    <rect id="Rectangle" x="0" y="0" width="240" height="100" rx="13"></rect>
+                </g>
+            </g>
+        </g>
+        <rect id="Rectangle-Copy-5" stroke="#979797" x="1138.5" y="0.5" width="909" height="519" rx="42"></rect>
+        <g id="Group-2" transform="translate(1138.000000, 0.000000)">
+            <mask id="mask-5" fill="white">
+                <use xlink:href="#path-4"></use>
+            </mask>
+            <g id="Mask"></g>
+            <g mask="url(#mask-5)" fill="url(#linearGradient-6)">
+                <g transform="translate(126.000000, -70.000000)">
+                    <rect id="Rectangle-Copy-8" x="0" y="560" width="658" height="100" rx="13"></rect>
+                    <rect id="Rectangle-Copy-4" x="0" y="420" width="658" height="100" rx="13"></rect>
+                    <rect id="Rectangle-Copy-3" x="0" y="280" width="658" height="100" rx="13"></rect>
+                    <rect id="Rectangle" x="0" y="140" width="658" height="100" rx="13"></rect>
+                    <rect id="Rectangle" x="0" y="0" width="658" height="100" rx="13"></rect>
+                </g>
+            </g>
+        </g>
+        <path d="M1060.96587,216.597351 C1065.20933,216.597351 1069.27899,218.28306 1072.27957,221.283642 L1099.97869,248.982756 C1106.22708,255.231145 1106.22708,265.361784 1099.97869,271.610173 L1072.27957,299.309287 C1066.03119,305.557675 1055.90055,305.557675 1049.65216,299.309287 C1046.65157,296.308705 1044.96587,292.239042 1044.96587,287.995578 L1044.965,280.999351 L958,281 C949.163444,281 942,273.836556 942,265 L942,254 C942,245.163444 949.163444,238 958,238 L1044.965,237.999351 L1044.96587,232.597351 C1044.96587,223.760795 1052.12931,216.597351 1060.96587,216.597351 Z" id="Combined-Shape" fill="#005BEA"></path>
+    </g>
+</svg>
