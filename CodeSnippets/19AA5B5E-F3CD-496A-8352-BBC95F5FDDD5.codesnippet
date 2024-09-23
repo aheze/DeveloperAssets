@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>viewControllerRepresentable</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>struct &lt;#ViewControllerRepresentable#&gt;: UIViewControllerRepresentable {
+    func makeUIViewController(context: Context) -&gt; &lt;#ViewController#&gt; {
+        &lt;#ViewController#&gt;()
+    }
+    
+    func updateUIViewController(_ uiViewController: &lt;#ViewController#&gt;, context: Context) {}
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>19AA5B5E-F3CD-496A-8352-BBC95F5FDDD5</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>UIViewControllerRepresentable</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

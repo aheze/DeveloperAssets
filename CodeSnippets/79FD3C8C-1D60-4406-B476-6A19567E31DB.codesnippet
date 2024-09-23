@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>utilities</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>import SwiftUI
+
+enum Utilities {}
+
+extension Utilities {
+    static func interpolate(a: Double, b: Double, percent: Double) -&gt; Double {
+        let track = b - a
+        let value = a + (track * percent)
+        return value
+    }
+
+    static func interpolate(a: CGFloat, b: CGFloat, percent: CGFloat) -&gt; CGFloat {
+        let track = b - a
+        let value = a + (track * percent)
+        return value
+    }
+
+    static func percentage(trackStart: Double, trackEnd: Double, value: Double, cap: Bool) -&gt; Double {
+        let value = (value - trackStart) / (trackEnd - trackStart)
+
+        if cap {
+            return min(max(0, value), 1)
+        } else {
+            return value
+        }
+    }
+
+    static func percentage(trackStart: CGFloat, trackEnd: CGFloat, value: CGFloat, cap: Bool) -&gt; CGFloat {
+        let value = (value - trackStart) / (trackEnd - trackStart)
+
+        if cap {
+            return min(max(0, value), 1)
+        } else {
+            return value
+        }
+    }
+}
+
+extension UIView {
+    func pinEdgesToSuperview() {
+        guard let superview = superview else { return }
+        self.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.topAnchor.constraint(equalTo: superview.topAnchor),
+            self.rightAnchor.constraint(equalTo: superview.rightAnchor),
+            self.bottomAnchor.constraint(equalTo: superview.bottomAnchor),
+            self.leftAnchor.constraint(equalTo: superview.leftAnchor)
+        ])
+    }
+}
+
+extension UIViewController {
+    func addChildViewController(_ childViewController: UIViewController, in view: UIView) {
+        addChild(childViewController)
+        view.addSubview(childViewController.view)
+
+        childViewController.view.frame = view.bounds
+        childViewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+
+        childViewController.didMove(toParent: self)
+    }
+
+    /// Add a child view controller inside a view with constraints.
+    func embed(_ childViewController: UIViewController, in view: UIView) {
+        addChild(childViewController)
+        view.addSubview(childViewController.view)
+
+        childViewController.view.pinEdgesToSuperview()
+
+        childViewController.didMove(toParent: self)
+    }
+
+    func removeChildViewController(_ childViewController: UIViewController) {
+        childViewController.willMove(toParent: nil)
+        childViewController.view.removeFromSuperview()
+        childViewController.removeFromParent()
+    }
+}
+
+extension UIView {
+    // add a border to a view
+    func addDebugBorders(_ color: UIColor, width: CGFloat = 0.75) {
+        backgroundColor = color.withAlphaComponent(0.2)
+        layer.borderColor = color.cgColor
+        layer.borderWidth = width
+    }
+}
+
+extension Color {
+    init(hex: Int, opacity: CGFloat = 1) {
+        self.init(hex: UInt(hex), opacity: opacity)
+    }
+
+    init(hex: UInt, opacity: CGFloat = 1) {
+        self.init(
+            .displayP3,
+            red: Double((hex &amp; 0xFF0000) &gt;&gt; 16) / 255,
+            green: Double((hex &amp; 0x00FF00) &gt;&gt; 8) / 255,
+            blue: Double(hex &amp; 0x0000FF) / 255,
+            opacity: opacity
+        )
+    }
+}
+
+// from https://stackoverflow.com/a/68555127/14351818
+extension View {
+    func overlay&lt;Target: View&gt;(align originAlignment: Alignment, to targetAlignment: Alignment, @ViewBuilder of target: () -&gt; Target) -&gt; some View {
+        let hGuide = HorizontalAlignment(Alignment.TwoSided.self)
+        let vGuide = VerticalAlignment(Alignment.TwoSided.self)
+
+        return alignmentGuide(hGuide) { $0[originAlignment.horizontal] }
+            .alignmentGuide(vGuide) { $0[originAlignment.vertical] }
+            .overlay(alignment: Alignment(horizontal: hGuide, vertical: vGuide)) {
+                target()
+                    .alignmentGuide(hGuide) { $0[targetAlignment.horizontal] }
+                    .alignmentGuide(vGuide) { $0[targetAlignment.vertical] }
+            }
+    }
+}
+
+extension Alignment {
+    enum TwoSided: AlignmentID {
+        static func defaultValue(in context: ViewDimensions) -&gt; CGFloat { 0 }
+    }
+}
+
+public extension View {
+    // from https://stackoverflow.com/a/66822461/14351818
+    func frameReader(in coordinateSpace: CoordinateSpace = .global, frame: @escaping (CGRect) -&gt; Void) -&gt; some View {
+        return background(
+            GeometryReader { geometry in
+                Color.clear
+                    .preference(key: ContentFrameReaderPreferenceKey.self, value: geometry.frame(in: coordinateSpace))
+                    .onPreferenceChange(ContentFrameReaderPreferenceKey.self) { newValue in
+                        frame(newValue)
+                    }
+            }
+            .hidden()
+        )
+    }
+}
+
+struct ContentFrameReaderPreferenceKey: PreferenceKey {
+    static var defaultValue: CGRect { return CGRect() }
+    static func reduce(value: inout CGRect, nextValue: () -&gt; CGRect) { value = nextValue() }
+}
+
+extension View {
+    // from https://stackoverflow.com/a/66822461/14351818
+    func sizeReader(size: @escaping (CGSize) -&gt; Void) -&gt; some View {
+        return background(
+            GeometryReader { geometry in
+                Color.clear
+                    .preference(key: ContentSizeReaderPreferenceKey.self, value: geometry.size)
+                    .onPreferenceChange(ContentSizeReaderPreferenceKey.self) { newValue in
+                        size(newValue)
+                    }
+            }
+            .hidden()
+        )
+    }
+}
+
+struct ContentSizeReaderPreferenceKey: PreferenceKey {
+    static var defaultValue: CGSize { return CGSize() }
+    static func reduce(value: inout CGSize, nextValue: () -&gt; CGSize) { value = nextValue() }
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>79FD3C8C-1D60-4406-B476-6A19567E31DB</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Utilities</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
